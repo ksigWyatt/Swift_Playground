@@ -70,3 +70,6 @@ fastlane/test_output
 # will revise when learning Unit Testing
 **/Auto LayoutTests/
 **/Auto LayoutUITests/
+
+# Ignore graphics
+**/Assets.xcassets
