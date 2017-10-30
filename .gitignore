@@ -65,3 +65,8 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+# Adding the tests to the ignore - we won't need this now.
+# will revise when learning Unit Testing
+**/Auto LayoutTests/
+**/Auto LayoutUITests/
