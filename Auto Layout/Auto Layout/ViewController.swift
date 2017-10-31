@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         return imageView
     }()
     
+    // adding a closure for the textView
     let textDescriptor: UITextView = {
        let textView = UITextView()
         textView.text = "Join us today in our Fun & Games!"
@@ -63,7 +64,5 @@ class ViewController: UIViewController {
         textDescriptor.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         textDescriptor.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         textDescriptor.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        
     }
-
 }
