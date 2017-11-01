@@ -25,8 +25,19 @@ class ViewController: UIViewController {
     // adding a closure for the textView
     let textDescriptor: UITextView = {
        let textView = UITextView()
-        textView.text = "Join us today in our Fun & Games!"
-        textView.font = UIFont.boldSystemFont(ofSize: 18) // bold
+
+        // New way of assigning text attributes using a Dict
+        let attributedText = NSMutableAttributedString(string: "Join us today in our Fun & Games!",
+               attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
+        
+        // Add more text to the end of the above text
+        attributedText.append(NSAttributedString(string: "\n\n\nAre you ready for loads and loads of fun? Don't wait any longer! We hope to see you in our stores soon.",
+                                                 attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),
+                                                              NSAttributedStringKey.foregroundColor: UIColor.gray]))
+        
+        
+        textView.attributedText = attributedText
+        
         textView.textAlignment = .center // centered
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -73,8 +84,9 @@ class ViewController: UIViewController {
         
         // Add text constrints
         textDescriptor.topAnchor.constraint(equalTo: topImageContainerView.bottomAnchor).isActive = true
-        textDescriptor.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        textDescriptor.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        textDescriptor.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        // constant on right / opposite must be negative
+        textDescriptor.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         textDescriptor.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
