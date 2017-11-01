@@ -8,6 +8,16 @@
 
 import UIKit
 
+// STEP 1
+// using fake API endpoint found at https://jsonplaceholder.typicode.com/
+// Create a STRUCT to help decode the data as it's recieved
+struct data: Codable {
+    var userId: Int
+    var id: Int?
+    var title: String
+    var body: String
+}
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -21,17 +31,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // using fake API endpoint found at https://jsonplaceholder.typicode.com/
     
-    // STEP 1
     
-    // Create a STRUCT to help decode the data as it's recieved
-    struct data: Codable {
-        var userId: Int
-        var id: Int?
-        var title: String
-        var body: String
-    }
+    
     
     // STEP 2 - Fetch JSON
 
