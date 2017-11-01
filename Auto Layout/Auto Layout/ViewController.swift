@@ -16,6 +16,9 @@ class ViewController: UIViewController {
         
         // enables AutoLayout
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        imageView.contentMode = .scaleAspectFit // fit aspect for landscape + portrait
+        
         return imageView
     }()
     
@@ -33,10 +36,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // set the background color for the view
-        // view.backgroundColor = .yellow
-        
-        view.addSubview(bearImageView) //add image as a subview
+
         view.addSubview(textDescriptor) // add first line of text
         
         setupLayout()
@@ -49,20 +49,40 @@ class ViewController: UIViewController {
 
     // Making things more clean & OO
     func setupLayout() {
-        // set constraints for X + Y
-        bearImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-   
-        // add image to be 100px from the top instead
-        bearImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-    
-        // add height / width constraints
-        bearImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        bearImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        // Add container to the top to make the graphic look nice
+        let topImageContainerView = UIView()
+        view.addSubview(topImageContainerView)
+        
+        // enable autoLayout
+        topImageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        topImageContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true // 0.5 = half the height
+        topImageContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        
+//        topImageContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+//        topImageContainerView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        // Leading anchors instead - Because the left / right is strange in some rare cases
+        topImageContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        topImageContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+     
+        topImageContainerView.addSubview(bearImageView) //add image as a subview to the halved view
+     
+//        // set constraints for X + Y
+//        bearImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        bearImageView.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor).isActive = true
+        bearImageView.centerYAnchor.constraint(equalTo: topImageContainerView.centerYAnchor).isActive = true
+        
+//        // add image to be 100px from the top instead
+//        bearImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+//
+//        // add height / width constraints
+//        bearImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+//        bearImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        bearImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true // Half the height of the top view
         
         // Add text constrints
-        textDescriptor.topAnchor.constraint(equalTo: bearImageView.bottomAnchor, constant: 120).isActive = true
+        textDescriptor.topAnchor.constraint(equalTo: topImageContainerView.bottomAnchor).isActive = true
         textDescriptor.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         textDescriptor.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        textDescriptor.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        textDescriptor.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
