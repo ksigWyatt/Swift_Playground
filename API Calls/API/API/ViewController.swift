@@ -26,6 +26,20 @@ struct Course: Decodable {
     var imageUrl: String
 }
 
+// Nested items
+struct WebsiteDescription: Decodable {
+    var name: String
+    var description: String
+    var courses: [Course] // Array of course items
+}
+
+// Missing fields
+struct MissingItems: Decodable {
+    var name: String? // Adding optionionals for potentially missing items
+    var description: String? // - returns NIL when not present
+}
+
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -70,7 +84,7 @@ class ViewController: UIViewController {
             do {
                 // decode the JOSN and serialize -- Thanks Swit 4 ;)
                 let item = try JSONDecoder().decode(Data.self, from: data)
-                print(item.title)
+                print("Single Item - ", item.title)
             } catch let jsonErr {
                 print("Error Serializing: ", jsonErr)
             }
@@ -93,7 +107,7 @@ class ViewController: UIViewController {
             // STEP 3 - Serialize the data
             do {
                 let courses = try JSONDecoder().decode([Course].self, from: data) // the bracket is important
-                print(courses) // Prints an array of type JSON for Course items
+                print("Array - ", courses) // Prints an array of type JSON for Course items
             } catch let jsonErr {
                 print("Error Serializing: ", jsonErr)
             }
@@ -105,6 +119,21 @@ class ViewController: UIViewController {
         
         let jsonURLString = "https://api.letsbuildthatapp.com/jsondecodable/website_description"
         
+        guard let url = URL(string: jsonURLString) else { return }
+        
+        // Create a Session to visit the address specified above
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            // check the err or that the response == 200
+            
+            guard let data = data else { return }
+            
+            // STEP 3 - Serialize the data
+            do {
+                let webDescription = try JSONDecoder().decode(WebsiteDescription.self, from: data) // the bracket is important
+                print("Web - ", webDescription.name, webDescription.description) // Prints an array of type JSON for Course items
+            } catch let jsonErr {
+                print("Error Serializing: ", jsonErr)
+            }
+        }.resume()
     }
-    
 }
