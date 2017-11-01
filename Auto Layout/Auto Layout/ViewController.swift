@@ -58,25 +58,17 @@ class ViewController: UIViewController {
         topImageContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true // 0.5 = half the height
         topImageContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
-//        topImageContainerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        topImageContainerView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         // Leading anchors instead - Because the left / right is strange in some rare cases
         topImageContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         topImageContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
      
         topImageContainerView.addSubview(bearImageView) //add image as a subview to the halved view
      
-//        // set constraints for X + Y
-//        bearImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        // set constraints for X + Y
         bearImageView.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor).isActive = true
         bearImageView.centerYAnchor.constraint(equalTo: topImageContainerView.centerYAnchor).isActive = true
-        
-//        // add image to be 100px from the top instead
-//        bearImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-//
-//        // add height / width constraints
-//        bearImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-//        bearImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+
+        // add height / width constraints
         bearImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true // Half the height of the top view
         
         // Add text constrints
