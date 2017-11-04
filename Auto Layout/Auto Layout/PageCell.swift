@@ -8,10 +8,19 @@
 
 import UIKit
 
+// custom cell - basically each VC & Customize each one
 class PageCell: UICollectionViewCell {
     
+    var page: Page? {
+        didSet {
+            // use a guard to avoid a crash from forced unwrapping the name if it's nil
+            guard let unwrappedPage = page else { return }
+            bearImageView.image = UIImage(named: unwrappedPage.imageName)
+        }
+    }
+    
     // Adding a closure for the bear image view
-    let bearImageView: UIImageView = {
+    private let bearImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "bear_first"))
         
         // enables AutoLayout
@@ -21,7 +30,7 @@ class PageCell: UICollectionViewCell {
     }()
     
     // adding a closure for the textView
-    let textDescriptor: UITextView = {
+    private let textDescriptor: UITextView = {
         let textView = UITextView()
         
         // New way of assigning text attributes using a Dict

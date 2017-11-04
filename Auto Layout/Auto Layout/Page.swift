@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Extension
 //struct Page {
 //    let imageName: String
 //    let headerText: String

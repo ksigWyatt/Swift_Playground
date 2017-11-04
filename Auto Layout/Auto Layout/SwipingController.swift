@@ -13,7 +13,7 @@ struct Page {
     let headerText: String
 }
 
-
+// controls the each cell and how they are controlled
 class SwipingController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     // don't just use Arrays - they crash easily if there are too few or many cells vs count
@@ -69,8 +69,12 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         // changes the image of the image view declared in bearImageView to change it based
         // on the image found at the name in the global struct of Pages
         let page = pages[indexPath.item]
-        cell.bearImageView.image = UIImage(named: page.imageName)  // set image from name
-        cell.textDescriptor.text = page.headerText  // set bold text
+        cell.page = page // Swiping sets this page property
+        
+        
+        
+//        cell.bearImageView.image = UIImage(named: page.imageName)  // set image from name
+//        cell.textDescriptor.text = page.headerText  // set bold text
         
         return cell
     }
