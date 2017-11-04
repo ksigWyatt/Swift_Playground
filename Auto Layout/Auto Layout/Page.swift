@@ -8,9 +8,10 @@
 
 import Foundation
 
+// MODEL
 // Extension
-//struct Page {
-//    let imageName: String
-//    let headerText: String
-//}
-
+struct Page {
+    let imageName: String
+    let headerText: String
+    let bodyText: String
+}

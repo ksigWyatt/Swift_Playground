@@ -8,6 +8,7 @@
 
 import UIKit
 
+// VIEW
 // custom cell - basically each VC & Customize each one
 class PageCell: UICollectionViewCell {
     
@@ -16,6 +17,18 @@ class PageCell: UICollectionViewCell {
             // use a guard to avoid a crash from forced unwrapping the name if it's nil
             guard let unwrappedPage = page else { return }
             bearImageView.image = UIImage(named: unwrappedPage.imageName)
+            
+            // New way of assigning text attributes using a Dict
+            let attributedText = NSMutableAttributedString(string: unwrappedPage.headerText,
+                            attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
+            
+            // Add more text to the end of the above text using String Interpilation
+            attributedText.append(NSAttributedString(string: "\n\n\n\(unwrappedPage.bodyText)",
+                            attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),
+                                         NSAttributedStringKey.foregroundColor: UIColor.gray]))
+            
+            textDescriptor.attributedText = attributedText
+            textDescriptor.textAlignment = .center
         }
     }
     
@@ -35,11 +48,11 @@ class PageCell: UICollectionViewCell {
         
         // New way of assigning text attributes using a Dict
         let attributedText = NSMutableAttributedString(string: "Join us today in our Fun & Games!",
-                                                       attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
+                            attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
         
         // Add more text to the end of the above text
         attributedText.append(NSAttributedString(string: "\n\n\nAre you ready for loads and loads of fun? Don't wait any longer! We hope to see you in our stores soon.",
-                                                 attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),
+                            attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),
                                                               NSAttributedStringKey.foregroundColor: UIColor.gray]))
         
         textView.attributedText = attributedText

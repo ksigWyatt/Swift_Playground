@@ -8,11 +8,7 @@
 
 import UIKit
 
-struct Page {
-    let imageName: String
-    let headerText: String
-}
-
+// CONTROLLER
 // controls the each cell and how they are controlled
 class SwipingController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -23,9 +19,15 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
 //                         "VIP members special services"]
     
     let pages = [
-        Page(imageName: "bear_first", headerText: "Join us today in our Fun & Games!"),
-        Page(imageName: "heart_second", headerText: "Subscribe & get coupons for our daily events"),
-        Page(imageName: "leaf_third", headerText: "VIP members special services")
+        Page(imageName: "bear_first",
+             headerText: "Join us today in our Fun & Games!",
+             bodyText: "Are you ready for loads and loads of fun? Don't wait any longer! We hope to see you in our stores soon."),
+        Page(imageName: "heart_second",
+             headerText: "Subscribe & get coupons for our daily events",
+             bodyText: "Get notified of the savings imediately when we announce them on our website. Make sure to also give us any feedback you have."),
+        Page(imageName: "leaf_third",
+             headerText: "VIP members special services",
+             bodyText: "")
     ]
     
     override func viewDidLoad() {
