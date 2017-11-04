@@ -22,9 +22,7 @@ class ViewController: UIViewController {
         
         // enables AutoLayout
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         imageView.contentMode = .scaleAspectFit // fit aspect for landscape + portrait
-        
         return imageView
     }()
     
@@ -42,7 +40,6 @@ class ViewController: UIViewController {
                                          NSAttributedStringKey.foregroundColor: UIColor.gray]))
         
         textView.attributedText = attributedText
-        
         textView.textAlignment = .center // centered
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -63,7 +60,6 @@ class ViewController: UIViewController {
        let pc = UIPageControl()
         pc.currentPage = 0
         pc.numberOfPages = 4
-//        let pinkColor = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
         pc.currentPageIndicatorTintColor = UIColor.mainPink
         pc.pageIndicatorTintColor = UIColor.bgPink
         return pc
@@ -82,8 +78,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         view.addSubview(textDescriptor) // add first line of text
-        setupLayout()
-        setupBottomControls()
+        setupLayout() // Setup the images & top view
+        setupBottomControls() // add buttons & Page Controller
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,28 +95,36 @@ class ViewController: UIViewController {
         
         // enable autoLayout
         topImageContainerView.translatesAutoresizingMaskIntoConstraints = false
-        topImageContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true // 0.5 = half the height
-        topImageContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
-        // Leading anchors instead - Because the left / right is strange in some rare cases
-        topImageContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        topImageContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-     
+        NSLayoutConstraint.activate([
+            topImageContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5), // 0.5 = half the height
+            topImageContainerView.topAnchor.constraint(equalTo: view.topAnchor),
+            
+            // Leading anchors instead - Because the left / right is strange in some rare cases
+            topImageContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topImageContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        // This also must be added to the view BEFORE constraints can be added to it
+        // otherwise you get an uncaught NSGenericException
         topImageContainerView.addSubview(bearImageView) //add image as a subview to the halved view
-     
-        // set constraints for X + Y
-        bearImageView.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor).isActive = true
-        bearImageView.centerYAnchor.constraint(equalTo: topImageContainerView.centerYAnchor).isActive = true
-
-        // add height / width constraints
-        bearImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true // Half the height of the top view
         
-        // Add text constrints
-        textDescriptor.topAnchor.constraint(equalTo: topImageContainerView.bottomAnchor).isActive = true
-        textDescriptor.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        // constant on right / opposite must be negative
-        textDescriptor.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-        textDescriptor.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            // set constraints for X + Y
+            bearImageView.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor),
+            bearImageView.centerYAnchor.constraint(equalTo: topImageContainerView.centerYAnchor),
+            
+            // add height / width constraints
+            bearImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4), // Half the height of the top view
+            
+            // Add text constrints
+            textDescriptor.topAnchor.constraint(equalTo: topImageContainerView.bottomAnchor),
+            textDescriptor.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            
+            // constant on right / opposite must be negative
+            textDescriptor.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            textDescriptor.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     //using FilePrivate because the init of the button is private - this preserves the privacy
@@ -141,8 +145,7 @@ class ViewController: UIViewController {
             bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor), // safe for landscape
             bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50),
-            
+            bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
