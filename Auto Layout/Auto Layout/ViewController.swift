@@ -14,6 +14,8 @@ extension UIColor {
     static var bgPink = UIColor(red: 249/255, green: 207/255, blue: 224/255, alpha: 1)
 }
 
+// this view is becoming not needed - everything is added to the PageCell.swift file
+// this was used as a simple creation ground for everything
 class ViewController: UIViewController {
 
     // Adding a closure for the bear image view

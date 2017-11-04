@@ -15,7 +15,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         
         collectionView?.backgroundColor = .white
         // add this line to prevent NSInternalInconsistencyException & register cells
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+        collectionView?.register(PageCell.self, forCellWithReuseIdentifier: "cellId") // adding custom View Cell
         collectionView?.isPagingEnabled = true // allows for snaps between the cells
         
     }
@@ -41,13 +41,15 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
            # of the row in the collection View
            following the modulo if the index path is divisibly by 2 then set the color to red else green
            nice little inline coonditionals using an optional *!!THIS IS IMPORTANT!!*
-        */ cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
         
-        cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
+            cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
+        */
+        //cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
         
         return cell
     }
     
+    // set the collection view to take the entire size of the screen
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
             UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: view.frame.height)
