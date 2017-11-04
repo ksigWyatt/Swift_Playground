@@ -30,14 +30,16 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         let button = UIButton(type: .system)
         button.setTitle("PREV", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.addTarget(self, action: #selector(handlePrev), for: .touchUpInside)
         button.setTitleColor(.gray, for: .normal)
         return button
     }()
     
-    private let pageControl: UIPageControl = {
+    // Dots at the bottom for viewing the page we are on & what not
+    private lazy var pageControl: UIPageControl = {
         let pc = UIPageControl()
         pc.currentPage = 0
-        pc.numberOfPages = 4
+        pc.numberOfPages = pages.count // access member of your class thanks to lazy var
         pc.currentPageIndicatorTintColor = UIColor.mainPink
         pc.pageIndicatorTintColor = UIColor.bgPink
         return pc
@@ -49,9 +51,33 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         button.setTitle("NEXT", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(UIColor.mainPink, for: .normal)
+        button.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         return button
     }()
     
+    // next button handler
+    @objc private func handleNext() {
+
+        // protect the crash for the 4 pages when 3 are visible
+        // uses min so we dont end up on page 4 of 3
+        let nextIndex = min(pageControl.currentPage + 1, pages.count - 1) // use the pc value for the value for what page we are on
+        pageControl.currentPage = nextIndex // reset value for pc.current
+        let indexPath = IndexPath(item: nextIndex, section: 0)
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    // previous button handler
+    @objc private func handlePrev() {
+        
+        // protect the crash for the 4 pages when 3 are visible
+        // uses max so we dont end up on page -1
+        let nextIndex = max(pageControl.currentPage - 1, 0) // use the pc value for the value for what page we are on
+        pageControl.currentPage = nextIndex // reset value for pc.current
+        let indexPath = IndexPath(item: nextIndex, section: 0)
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    // MARK: Start
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,7 +138,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         let bottomControlsStackView = UIStackView(arrangedSubviews:
             [previousButton, pageControl, nextButton])
         
-        bottomControlsStackView.distribution = .fillEqually // Tells thestack view to split
+        bottomControlsStackView.distribution = .fillEqually // Tells the stack view to split
         view.addSubview(bottomControlsStackView)
         
         // enable autoLayout
