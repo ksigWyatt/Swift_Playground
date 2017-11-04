@@ -8,6 +8,12 @@
 
 import UIKit
 
+// Make your life easier by declaring an OO extension to UIColor for things that are used often
+extension UIColor {
+    static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
+    static var bgPink = UIColor(red: 249/255, green: 207/255, blue: 224/255, alpha: 1)
+}
+
 class ViewController: UIViewController {
 
     // Adding a closure for the bear image view
@@ -35,7 +41,6 @@ class ViewController: UIViewController {
                             attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),
                                          NSAttributedStringKey.foregroundColor: UIColor.gray]))
         
-        
         textView.attributedText = attributedText
         
         textView.textAlignment = .center // centered
@@ -54,12 +59,22 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private let pageControl: UIPageControl = {
+       let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.numberOfPages = 4
+//        let pinkColor = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
+        pc.currentPageIndicatorTintColor = UIColor.mainPink
+        pc.pageIndicatorTintColor = UIColor.bgPink
+        return pc
+    }()
+    
     // Add previous button - private so that no other .swift classes can access this
     private let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("NEXT", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(UIColor.mainPink, for: .normal)
         return button
     }()
     
@@ -110,14 +125,10 @@ class ViewController: UIViewController {
     
     //using FilePrivate because the init of the button is private - this preserves the privacy
     fileprivate func setupBottomControls() {
-//        view.addSubview(previousButton)
-        
-        let greenView = UIView()
-        greenView.backgroundColor = .green
         
         // Using UI Stack view for adding buttons to the bottom - much more effiencent & easy
         let bottomControlsStackView = UIStackView(arrangedSubviews:
-            [previousButton, greenView, nextButton])
+            [previousButton, pageControl, nextButton])
         
         bottomControlsStackView.distribution = .fillEqually // Tells thestack view to split
         view.addSubview(bottomControlsStackView)
