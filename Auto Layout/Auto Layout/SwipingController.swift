@@ -9,13 +9,18 @@
 import UIKit
 
 class SwipingController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
+    let imageNames = ["bear_first", "heart_second", "leaf_third"]
+    let headerStrings = ["Join us today in our Fun & Games!",
+                         "Subscribe & get coupons for our daily events",
+                         "VIP members special services"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView?.backgroundColor = .white
         // add this line to prevent NSInternalInconsistencyException & register cells
-        collectionView?.register(PageCell.self, forCellWithReuseIdentifier: "cellId") // adding custom View Cell
+        collectionView?.register(PageCell.self, forCellWithReuseIdentifier: "cellId") // adding custom View Cell - this is important too
         collectionView?.isPagingEnabled = true // allows for snaps between the cells
         
     }
@@ -29,14 +34,17 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     // section - An index number identifying a section in collectionView. 
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        return 4
+        // OO # of pages
+        return imageNames.count
     }
     
     // add cells for the sections above
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt
                                  indexPath: IndexPath) -> UICollectionViewCell {
+        
+        // access PageCell items - CASTING is important
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId",
-                                                         for: indexPath)
+                                                         for: indexPath) as! PageCell
         /*
            # of the row in the collection View
            following the modulo if the index path is divisibly by 2 then set the color to red else green
@@ -44,8 +52,12 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         
             cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
         */
-        //cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
         
+        // changes the image of the image view declared in bearImageView to change it based
+        // on the image found at the name in the global array of names
+        let imageName = imageNames[indexPath.item]
+        cell.bearImageView.image = UIImage(named: imageName) // set image from name
+        cell.textDescriptor.text = headerStrings[indexPath.item] // set bold text
         return cell
     }
     
