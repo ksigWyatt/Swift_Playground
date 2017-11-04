@@ -23,7 +23,9 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
 //                         "VIP members special services"]
     
     let pages = [
-        Page(imageName: "bear_first", headerText: "Join us today in our Fun & Games!")
+        Page(imageName: "bear_first", headerText: "Join us today in our Fun & Games!"),
+        Page(imageName: "heart_second", headerText: "Subscribe & get coupons for our daily events"),
+        Page(imageName: "leaf_third", headerText: "VIP members special services")
     ]
     
     override func viewDidLoad() {
@@ -46,7 +48,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
         // OO # of pages
-        return imageNames.count
+        return pages.count
     }
     
     // add cells for the sections above
@@ -65,10 +67,11 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         */
         
         // changes the image of the image view declared in bearImageView to change it based
-        // on the image found at the name in the global array of names
-        let imageName = imageNames[indexPath.item]
-        cell.bearImageView.image = UIImage(named: imageName) // set image from name
-        cell.textDescriptor.text = headerStrings[indexPath.item] // set bold text
+        // on the image found at the name in the global struct of Pages
+        let page = pages[indexPath.item]
+        cell.bearImageView.image = UIImage(named: page.imageName)  // set image from name
+        cell.textDescriptor.text = page.headerText  // set bold text
+        
         return cell
     }
     
