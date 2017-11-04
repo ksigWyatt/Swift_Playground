@@ -63,24 +63,6 @@ class PageCell: UICollectionViewCell {
         return textView
     }()
     
-    // Add previous button - private so that no other .swift classes can access this
-    private let previousButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("PREV", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.gray, for: .normal)
-        return button
-    }()
-    
-    private let pageControl: UIPageControl = {
-        let pc = UIPageControl()
-        pc.currentPage = 0
-        pc.numberOfPages = 4
-        pc.currentPageIndicatorTintColor = UIColor.mainPink
-        pc.pageIndicatorTintColor = UIColor.bgPink
-        return pc
-    }()
-    
     // register the custom cell
     override init(frame: CGRect) {
         super.init(frame: frame)

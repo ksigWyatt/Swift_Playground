@@ -12,32 +12,55 @@ import UIKit
 // controls the each cell and how they are controlled
 class SwipingController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    // don't just use Arrays - they crash easily if there are too few or many cells vs count
-//    let imageNames = ["bear_first", "heart_second", "leaf_third"]
-//    let headerStrings = ["Join us today in our Fun & Games!",
-//                         "Subscribe & get coupons for our daily events",
-//                         "VIP members special services"]
-    
+    // don't just use Arrays - they crash easily if there are too few or many cells vs count    
     let pages = [
         Page(imageName: "bear_first",
              headerText: "Join us today in our Fun & Games!",
              bodyText: "Are you ready for loads and loads of fun? Don't wait any longer! We hope to see you in our stores soon."),
         Page(imageName: "heart_second",
-             headerText: "Subscribe & get coupons for our daily events",
+             headerText: "Subscribe & get coupons on our daily events",
              bodyText: "Get notified of the savings imediately when we announce them on our website. Make sure to also give us any feedback you have."),
         Page(imageName: "leaf_third",
              headerText: "VIP members special services",
              bodyText: "")
     ]
     
+    // Add previous button - private so that no other .swift classes can access this
+    private let previousButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("PREV", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.gray, for: .normal)
+        return button
+    }()
+    
+    private let pageControl: UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.numberOfPages = 4
+        pc.currentPageIndicatorTintColor = UIColor.mainPink
+        pc.pageIndicatorTintColor = UIColor.bgPink
+        return pc
+    }()
+    
+    // Add previous button - private so that no other .swift classes can access this
+    private let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("NEXT", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(UIColor.mainPink, for: .normal)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupBottomControls()
         
         collectionView?.backgroundColor = .white
         // add this line to prevent NSInternalInconsistencyException & register cells
         collectionView?.register(PageCell.self, forCellWithReuseIdentifier: "cellId") // adding custom View Cell - this is important too
         collectionView?.isPagingEnabled = true // allows for snaps between the cells
-        
     }
     
     // add spacing function for the cells to display properly w/out the while line
@@ -73,11 +96,6 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         let page = pages[indexPath.item]
         cell.page = page // Swiping sets this page property
         
-        
-        
-//        cell.bearImageView.image = UIImage(named: page.imageName)  // set image from name
-//        cell.textDescriptor.text = page.headerText  // set bold text
-        
         return cell
     }
     
@@ -87,4 +105,25 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
     
+    //using FilePrivate because the init of the button is private - this preserves the privacy
+    fileprivate func setupBottomControls() {
+        
+        // Using UI Stack view for adding buttons to the bottom - much more effiencent & easy
+        let bottomControlsStackView = UIStackView(arrangedSubviews:
+            [previousButton, pageControl, nextButton])
+        
+        bottomControlsStackView.distribution = .fillEqually // Tells thestack view to split
+        view.addSubview(bottomControlsStackView)
+        
+        // enable autoLayout
+        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Easier way of activating constraints - I like this more
+        NSLayoutConstraint.activate([
+            bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor), // safe for landscape
+            bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
+            ])
+    }
 }
