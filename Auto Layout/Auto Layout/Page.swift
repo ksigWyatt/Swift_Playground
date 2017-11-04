@@ -6,9 +6,10 @@
 //  Copyright © 2017 Thrive Community Church. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-struct Page {
-    let imageName: String
-    let headerText: String
-}
+//struct Page {
+//    let imageName: String
+//    let headerText: String
+//}
+

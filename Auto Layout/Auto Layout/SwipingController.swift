@@ -8,12 +8,23 @@
 
 import UIKit
 
+struct Page {
+    let imageName: String
+    let headerText: String
+}
+
+
 class SwipingController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    let imageNames = ["bear_first", "heart_second", "leaf_third"]
-    let headerStrings = ["Join us today in our Fun & Games!",
-                         "Subscribe & get coupons for our daily events",
-                         "VIP members special services"]
+    // don't just use Arrays - they crash easily if there are too few or many cells vs count
+//    let imageNames = ["bear_first", "heart_second", "leaf_third"]
+//    let headerStrings = ["Join us today in our Fun & Games!",
+//                         "Subscribe & get coupons for our daily events",
+//                         "VIP members special services"]
+    
+    let pages = [
+        Page(imageName: "bear_first", headerText: "Join us today in our Fun & Games!")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
