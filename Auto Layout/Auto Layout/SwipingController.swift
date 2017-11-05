@@ -22,7 +22,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
              bodyText: "Get notified of the savings imediately when we announce them on our website. Make sure to also give us any feedback you have."),
         Page(imageName: "leaf_third",
              headerText: "VIP members special services",
-             bodyText: "")
+             bodyText: "Join the private club of elite customers and you'll get entered into select drawings & giveaways.")
     ]
     
     // Add previous button - private so that no other .swift classes can access this
