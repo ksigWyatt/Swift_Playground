@@ -21,6 +21,7 @@ extension SwipingController {
             if self.pageControl.currentPage == 0 {
                 self.collectionView?.contentOffset = .zero
             }
+            // small bug here on iPhone 8 when turning to landscape and back on the third page
             else {
                 // scroll to correct index while transitioning
                 let indexPath = IndexPath(item: self.pageControl.currentPage, section: 0)
