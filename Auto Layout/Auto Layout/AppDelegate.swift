@@ -16,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow()
+        window?.makeKeyAndVisible()
+        
+        // Set the CollectionViewController to be visible from when the application starts
+        // A concrete layout object that organizes items into a grid with optional header and footer views for each section.
+        let viewLayout = UICollectionViewFlowLayout()
+        viewLayout.scrollDirection = .horizontal
+        let swipingController = SwipingController(collectionViewLayout: viewLayout)
+        window?.rootViewController = swipingController
+        
         return true
     }
 
