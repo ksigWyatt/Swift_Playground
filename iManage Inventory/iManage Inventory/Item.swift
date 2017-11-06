@@ -9,8 +9,9 @@
 import Foundation
 
 struct Item {
-    let number: Int
-    let description: String
-    let comments: String
-    let quantity: Int
+    let id: UUID
+    var number: Int
+    var description: String
+    var comments: String
+    var quantity: Int
 }

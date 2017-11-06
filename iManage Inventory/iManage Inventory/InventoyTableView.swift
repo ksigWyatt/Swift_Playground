@@ -10,15 +10,10 @@ import UIKit
 
 class InventoryTableView: UITableViewController {
     
-    var cellItems: [String] = [String]()
-    var currentIndex: Int = 0
-    let newItem = "New  Item"
-    let itemTitle: String = "item"
-    
+    var selectedRow: Int? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        loadDummyData()
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add,
                                         target: self,
@@ -26,29 +21,15 @@ class InventoryTableView: UITableViewController {
         self.navigationItem.rightBarButtonItem = addButton
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    
     @objc func addNewItem(_ sender: AnyObject) {
 
-        // If there's no items OR there is not an item called "New Item"
-        if cellItems.count == 0 || cellItems[0] != newItem {
-
-            cellItems.insert(newItem, at: 0)
-            let indexPath = IndexPath(row: 0, section: 0)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-            saveViewState()
-        }
-        currentIndex = 0
         self.performSegue(withIdentifier: "updateItems", sender: self)
-    }
-    
-    //
-    func saveViewState() {
-        UserDefaults.standard.set(cellItems, forKey: itemTitle)
-        UserDefaults.standard.synchronize()
-    }
-    
-    //
-    func loadDummyData() {
-        
     }
     
     override func tableView(_ tableView: UITableView,
@@ -64,6 +45,27 @@ class InventoryTableView: UITableViewController {
         cell.desc.text = "\(StoreItems.items[indexPath.row].description)"
         cell.quantity.text = "\(StoreItems.items[indexPath.row].quantity)"
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedRow = indexPath.row
+        performSegue(withIdentifier: "updateItems", sender: self)
+    }
+    
+    func reloadTableView() {
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? UpdateItemViewController {
+            if selectedRow == nil {
+                vc.item = Item(id: UUID(), number: 0, description: "New Item", comments: "", quantity: 0)
+            }
+            else {
+                vc.item = StoreItems.items[selectedRow!]
+            }
+            selectedRow = nil
+        }
     }
     
 }
