@@ -8,15 +8,20 @@
 
 import UIKit
 
-class UpdateItemViewController: UIViewController {
+class UpdateItemViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var currentStock: UILabel!
-    var quantity: Int = 0
+    @IBOutlet weak var descriptionText: UITextView!
+    @IBOutlet weak var commentText: UITextView!
+    var count: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        descriptionText.delegate = self
+        commentText.delegate = self
+        currentStock.text = StoreItems.items.quantity
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,14 +30,14 @@ class UpdateItemViewController: UIViewController {
     }
 
     @IBAction func recieved(_ sender: Any) {
-        quantity += 100
-        currentStock.text = "\(quantity)"
+        count += 100
+        currentStock.text = "\(count)"
     }
     
     @IBAction func consumed(_ sender: Any) {
-        quantity -= 100
+        count -= 100
         
-        if (quantity < 0) {
+        if (count < 0) {
             
             let alert = UIAlertController(title: "Alert!",
                                           message: "There can't be negative stock - Unless you sold it too well ;)",
@@ -41,9 +46,9 @@ class UpdateItemViewController: UIViewController {
                                           style: UIAlertActionStyle.default,
                                           handler: nil))
             self.present(alert, animated: true, completion: nil)
-            quantity = 0
+            count = 0
         }
-        currentStock.text = "\(quantity)"
+        currentStock.text = "\(count)"
     }
 }
 

@@ -15,6 +15,9 @@
 		DC1119741FB0AA52001EDBF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC1119721FB0AA52001EDBF8 /* LaunchScreen.storyboard */; };
 		DC11197F1FB0AA52001EDBF8 /* iManage_InventoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC11197E1FB0AA52001EDBF8 /* iManage_InventoryTests.swift */; };
 		DC11198A1FB0AA52001EDBF8 /* iManage_InventoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1119891FB0AA52001EDBF8 /* iManage_InventoryUITests.swift */; };
+		DC1119981FB0E0F6001EDBF8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1119971FB0E0F6001EDBF8 /* Item.swift */; };
+		DC11199A1FB0E334001EDBF8 /* StoreItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1119991FB0E334001EDBF8 /* StoreItems.swift */; };
+		DC11199C1FB0EB55001EDBF8 /* ItemCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC11199B1FB0EB55001EDBF8 /* ItemCellTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		DC1119851FB0AA52001EDBF8 /* iManage InventoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iManage InventoryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1119891FB0AA52001EDBF8 /* iManage_InventoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iManage_InventoryUITests.swift; sourceTree = "<group>"; };
 		DC11198B1FB0AA52001EDBF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC1119971FB0E0F6001EDBF8 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		DC1119991FB0E334001EDBF8 /* StoreItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItems.swift; sourceTree = "<group>"; };
+		DC11199B1FB0EB55001EDBF8 /* ItemCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,9 @@
 				DC1119701FB0AA52001EDBF8 /* Assets.xcassets */,
 				DC1119721FB0AA52001EDBF8 /* LaunchScreen.storyboard */,
 				DC1119751FB0AA52001EDBF8 /* Info.plist */,
+				DC1119971FB0E0F6001EDBF8 /* Item.swift */,
+				DC1119991FB0E334001EDBF8 /* StoreItems.swift */,
+				DC11199B1FB0EB55001EDBF8 /* ItemCellTableViewCell.swift */,
 			);
 			path = "iManage Inventory";
 			sourceTree = "<group>";
@@ -262,8 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1119981FB0E0F6001EDBF8 /* Item.swift in Sources */,
+				DC11199A1FB0E334001EDBF8 /* StoreItems.swift in Sources */,
 				DC11196C1FB0AA52001EDBF8 /* UpdateItemViewController.swift in Sources */,
 				DC1119681FB0AA52001EDBF8 /* AppDelegate.swift in Sources */,
+				DC11199C1FB0EB55001EDBF8 /* ItemCellTableViewCell.swift in Sources */,
 				DC11196A1FB0AA52001EDBF8 /* InventoyTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
