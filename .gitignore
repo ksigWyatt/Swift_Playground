@@ -78,3 +78,7 @@ fastlane/test_output
 /API Calls/Tutorial/
 **/APITests/
 **/APIUITests/
+
+# Inventory
+**/iManage InventoryUITests/
+**/iManage InventoryTests/
