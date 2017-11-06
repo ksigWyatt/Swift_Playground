@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC1119681FB0AA52001EDBF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1119671FB0AA52001EDBF8 /* AppDelegate.swift */; };
 		DC11196A1FB0AA52001EDBF8 /* InventoyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1119691FB0AA52001EDBF8 /* InventoyTableView.swift */; };
-		DC11196C1FB0AA52001EDBF8 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC11196B1FB0AA52001EDBF8 /* SecondViewController.swift */; };
+		DC11196C1FB0AA52001EDBF8 /* UpdateItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC11196B1FB0AA52001EDBF8 /* UpdateItemViewController.swift */; };
 		DC11196F1FB0AA52001EDBF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC11196D1FB0AA52001EDBF8 /* Main.storyboard */; };
 		DC1119711FB0AA52001EDBF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1119701FB0AA52001EDBF8 /* Assets.xcassets */; };
 		DC1119741FB0AA52001EDBF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC1119721FB0AA52001EDBF8 /* LaunchScreen.storyboard */; };
@@ -38,7 +38,7 @@
 		DC1119641FB0AA52001EDBF8 /* iManage Inventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iManage Inventory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1119671FB0AA52001EDBF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC1119691FB0AA52001EDBF8 /* InventoyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoyTableView.swift; sourceTree = "<group>"; };
-		DC11196B1FB0AA52001EDBF8 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		DC11196B1FB0AA52001EDBF8 /* UpdateItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateItemViewController.swift; sourceTree = "<group>"; };
 		DC11196E1FB0AA52001EDBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC1119701FB0AA52001EDBF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC1119731FB0AA52001EDBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			children = (
 				DC1119671FB0AA52001EDBF8 /* AppDelegate.swift */,
 				DC1119691FB0AA52001EDBF8 /* InventoyTableView.swift */,
-				DC11196B1FB0AA52001EDBF8 /* SecondViewController.swift */,
+				DC11196B1FB0AA52001EDBF8 /* UpdateItemViewController.swift */,
 				DC11196D1FB0AA52001EDBF8 /* Main.storyboard */,
 				DC1119701FB0AA52001EDBF8 /* Assets.xcassets */,
 				DC1119721FB0AA52001EDBF8 /* LaunchScreen.storyboard */,
@@ -262,7 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC11196C1FB0AA52001EDBF8 /* SecondViewController.swift in Sources */,
+				DC11196C1FB0AA52001EDBF8 /* UpdateItemViewController.swift in Sources */,
 				DC1119681FB0AA52001EDBF8 /* AppDelegate.swift in Sources */,
 				DC11196A1FB0AA52001EDBF8 /* InventoyTableView.swift in Sources */,
 			);
