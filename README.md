@@ -26,6 +26,7 @@ Application demonstrating a number of skills pertaining to iOS development
 ![Screenshot](https://i.imgur.com/UG0KUh9.png)
 ![Screenshot](https://i.imgur.com/bnhKXbx.png)
 
+
 ### Auto Layout
 Application demonstrating Programmatic UI using Auto Layout in Swift 4 
 - Using `safeAreaLayoutGuide` for perfect indents
