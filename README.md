@@ -2,7 +2,7 @@
 Learning Advanced Features &amp; Algorithms in Swift. 
 Projects that are useful for learning how Advanced swift performs are placed here too, instead of creating a whole new repo for them.
 
-## Projcts 
+## Projects 
 ### iManage Inventory
 Application demonstrating a number of skills pertaining to iOS development
 - Data Persistence: `Structs`
